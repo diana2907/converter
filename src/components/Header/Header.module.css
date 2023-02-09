@@ -1,0 +1,18 @@
+.container .header {
+position: relative;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+
+    border-bottom: 1px solid #ececec;
+    display: flex;
+    align-items: center;
+    background-color: #9a9bac;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+

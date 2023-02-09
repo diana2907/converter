@@ -1,0 +1,10 @@
+.box {
+display: flex;
+}
+.title {
+    margin-bottom: 15px;
+}
+.btn {
+    border: none;
+    background-color: transparent;
+}
