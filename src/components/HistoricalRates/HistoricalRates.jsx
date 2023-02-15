@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import css from 'components/HistoricalRates/HistoricalRates.module.css';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 
-export const HistoricalRates = () => {
+export const HistoricalRates = ({ currencyOptions }) => {
   const D = new Date();
   const dateISO =
     D.getFullYear() +
@@ -13,25 +14,26 @@ export const HistoricalRates = () => {
   const [date, setDate] = useState(dateISO);
   const [rates, setRates] = useState({});
   const [symbols, setSymbols] = useState([]);
+  const [baseCurrency, setBaseCurrency] = useState('USD');
 
   useEffect(() => {
-    fetch(`${BASE_URL}/${date}?base=USD&symbols=${symbols.join()}`)
+    fetch(`${BASE_URL}/${date}?base=${baseCurrency}&symbols=${symbols.join()}`)
       .then(res => res.json())
       .then(data => {
         setDate(data.date);
         setRates(data.rates);
       });
-  }, [date, symbols]);
+  }, [date, symbols, baseCurrency]);
 
-  console.log(date);
   const handleToDateChange = e => {
     setDate(e.target.value);
   };
 
   const onClick = e => {
-    if (!symbols.includes(e.target.value)) {
-      setSymbols([...symbols, e.target.value]);
+    if (symbols.includes(e.target.value)) {
+      return;
     }
+    setSymbols([...symbols, e.target.value]);
   };
 
   const deleteCurrency = symb => {
@@ -41,25 +43,42 @@ export const HistoricalRates = () => {
   return (
     <div className="container">
       <input onChange={handleToDateChange} value={date} type="date" />
-      <select onClick={onClick} name="symbols[]">
-        {/* <option disabled selected>
+      <h3>Оберіть одну або декілька валют для порівняння</h3>
+      <div className={css.box}>
+        <select onClick={onClick} name="symbols[]">
+          {/* <option disabled selected>
           Оберіть одну валюту або кілька
         </option> */}
-        {Object.keys(rates).map(key => (
-          <option key={key} value={key}>
-            {key}
-          </option>
-        ))}
-      </select>
+          {currencyOptions.map(key => (
+            <option key={key} value={key}>
+              {key}
+            </option>
+          ))}
+        </select>
 
-      {symbols.map(item => (
-        <div key={item}>
-          <p>{item}</p>
-          <button onClick={() => deleteCurrency(item)} type="button">
-            x
-          </button>
-        </div>
-      ))}
+        {symbols.map(item => (
+          <div key={item}>
+            <p>{item}</p>
+            <button onClick={() => deleteCurrency(item)} type="button">
+              x
+            </button>
+          </div>
+        ))}
+      </div>
+      <div>
+        <h3>Базова валюта</h3>
+        <select
+          value={baseCurrency}
+          onChange={e => setBaseCurrency(e.target.value)}
+          name="base"
+        >
+          {currencyOptions.map(key => (
+            <option key={key} value={key}>
+              {key}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <table>
         {Object.keys(rates).map((key, index) => (

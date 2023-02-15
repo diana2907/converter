@@ -1,10 +1,4 @@
-import { Converter } from 'components/Converter/Converter';
-import { HistoricalRates } from 'components/HistoricalRates/HistoricalRates';
+import { MainRates } from 'components/MainRates/MainRates';
 export function RatesPage() {
-  return (
-    <>
-      <Converter />
-      <HistoricalRates />
-    </>
-  );
+  return <MainRates />;
 }

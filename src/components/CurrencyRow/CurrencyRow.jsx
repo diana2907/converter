@@ -10,6 +10,7 @@ export default function CurrencyRow({
   return (
     <div>
       <input
+        min="1"
         type="number"
         className={css.input}
         value={amount}

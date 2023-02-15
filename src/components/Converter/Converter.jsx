@@ -6,8 +6,7 @@ import { RiSwapBoxLine } from 'react-icons/ri';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 
-export function Converter() {
-  const [currencyOptions, setCurrencyOptions] = useState([]);
+export function Converter({ currencyOptions }) {
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
   const [exchangeRate, setExchangeRate] = useState();
@@ -22,17 +21,6 @@ export function Converter() {
     toAmount = amount;
     fromAmount = amount / exchangeRate;
   }
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/symbols`)
-      .then(res => res.json())
-      .then(data => {
-        // const firstCurrency = Object.keys(data.symbols)[0];
-        setCurrencyOptions([...Object.keys(data.symbols)]);
-        // setToCurrency(firstCurrency);
-        // setExchangeRate(data.symbols[firstCurrency]);
-      });
-  }, []);
 
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
