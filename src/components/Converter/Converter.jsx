@@ -27,10 +27,10 @@ export function Converter() {
     fetch(`${BASE_URL}/symbols`)
       .then(res => res.json())
       .then(data => {
-        const firstCurrency = Object.keys(data.symbols)[0];
+        // const firstCurrency = Object.keys(data.symbols)[0];
         setCurrencyOptions([...Object.keys(data.symbols)]);
-        setToCurrency(firstCurrency);
-        setExchangeRate(data.symbols[firstCurrency]);
+        // setToCurrency(firstCurrency);
+        // setExchangeRate(data.symbols[firstCurrency]);
       });
   }, []);
 

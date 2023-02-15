@@ -20,6 +20,9 @@ export default function CurrencyRow({
         value={selectedCurrency}
         onChange={onChangeCurrency}
       >
+        <option disabled selected>
+          Оберіть валюту
+        </option>
         {currencyOptions.map(option => (
           <option key={option} value={option}>
             {option}
