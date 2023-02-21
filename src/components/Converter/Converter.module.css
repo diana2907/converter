@@ -1,8 +1,16 @@
+.converter {
+    padding-top: 40px;
+}
 .box {
 display: flex;
+justify-content: space-between;
+
+
+margin-top: 50px;
 }
 .title {
     margin-bottom: 15px;
+    font-size: 32px;
 }
 .btn {
     border: none;

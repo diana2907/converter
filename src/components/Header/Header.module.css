@@ -7,12 +7,15 @@ position: relative;
     top: 0;
     width: 100%;
 
-    border-bottom: 1px solid #ececec;
+    border-bottom: 0.5px solid #eadec6;
     display: flex;
     align-items: center;
-    background-color: #9a9bac;
     padding-top: 10px;
     padding-bottom: 10px;
+    background-color: #03162f;
+
+    font-size: 22px;
+    font-weight: 600;
 }
 
 

@@ -1,12 +1,13 @@
 import CurrencyRow from 'components/CurrencyRow/CurrencyRow';
-import { useEffect, useState } from 'react';
 import css from 'components/Converter/Converter.module.css';
+import { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons';
 import { RiSwapBoxLine } from 'react-icons/ri';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 
-export function Converter({ currencyOptions }) {
+export function Converter({ currencyOptions, dateISO }) {
+  const [date, setDate] = useState(dateISO);
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
   const [exchangeRate, setExchangeRate] = useState();
@@ -27,8 +28,9 @@ export function Converter({ currencyOptions }) {
       fetch(`${BASE_URL}/convert?from=${fromCurrency}&to=${toCurrency}`)
         .then(res => res.json())
         .then(data => {
-          console.log(data);
+          console.log(data.date);
           setExchangeRate(data.info.rate);
+          setDate(data.date);
         });
     }
   }, [fromCurrency, toCurrency, exchangeRate]);
@@ -49,31 +51,36 @@ export function Converter({ currencyOptions }) {
   }
 
   return (
-    <div className="container">
-      <h1 className={css.title}>Сurrency rates</h1>
-      <div className={css.box}>
-        <CurrencyRow
-          currencyOptions={currencyOptions}
-          selectedCurrency={fromCurrency}
-          onChangeCurrency={e => setFromCurrency(e.target.value)}
-          onChangeAmount={handleFromAmountChange}
-          amount={fromAmount}
-        />
+    <section className={css.converter}>
+      <div className="container">
+        <div>
+          <h1 className={css.title}>Сurrency rates</h1>
+          <p>on the date : {date}</p>
+        </div>
+        <div className={css.box}>
+          <CurrencyRow
+            currencyOptions={currencyOptions}
+            selectedCurrency={fromCurrency}
+            onChangeCurrency={e => setFromCurrency(e.target.value)}
+            onChangeAmount={handleFromAmountChange}
+            amount={fromAmount}
+          />
 
-        <button className={css.btn} type="button" onClick={changeCurrency}>
-          <IconContext.Provider value={{ size: '40px' }}>
-            <RiSwapBoxLine />
-          </IconContext.Provider>
-        </button>
+          <button className={css.btn} type="button" onClick={changeCurrency}>
+            <IconContext.Provider value={{ size: '46px', color: '#d2b575' }}>
+              <RiSwapBoxLine />
+            </IconContext.Provider>
+          </button>
 
-        <CurrencyRow
-          currencyOptions={currencyOptions}
-          selectedCurrency={toCurrency}
-          onChangeCurrency={e => setToCurrency(e.target.value)}
-          onChangeAmount={handleToAmountChange}
-          amount={toAmount}
-        />
+          <CurrencyRow
+            currencyOptions={currencyOptions}
+            selectedCurrency={toCurrency}
+            onChangeCurrency={e => setToCurrency(e.target.value)}
+            onChangeAmount={handleToAmountChange}
+            amount={toAmount}
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

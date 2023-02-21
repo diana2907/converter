@@ -1,25 +1,32 @@
 import { Converter } from 'components/Converter/Converter';
+import { CurrencyFluctuation } from 'components/CurrencyFluctuation/CurrencyFluctuation';
 import { HistoricalRates } from 'components/HistoricalRates/HistoricalRates';
 import { useEffect, useState } from 'react';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 
 export function MainRates() {
+  const D = new Date();
+  const dateISO =
+    D.getFullYear() +
+    '-' +
+    ('0' + (D.getMonth() + 1)).slice(-2) +
+    '-' +
+    ('0' + D.getDate()).slice(-2);
   const [currencyOptions, setCurrencyOptions] = useState([]);
 
   useEffect(() => {
     fetch(`${BASE_URL}/symbols`)
       .then(res => res.json())
       .then(data => {
-        // const firstCurrency = Object.keys(data.symbols)[0];
         setCurrencyOptions([...Object.keys(data.symbols)]);
-        // setToCurrency(firstCurrency);
-        // setExchangeRate(data.symbols[firstCurrency]);
       });
   }, []);
+
   return (
     <>
-      <Converter currencyOptions={currencyOptions} />
+      <Converter currencyOptions={currencyOptions} dateISO={dateISO} />
+      <CurrencyFluctuation baseDate={dateISO} />
       <HistoricalRates currencyOptions={currencyOptions} />
     </>
   );

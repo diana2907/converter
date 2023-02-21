@@ -8,7 +8,7 @@ export const Navigation = () => {
     <nav className={css.nav}>
       <NavLink to="/">
         <div className={css.logo}>
-          <IconContext.Provider value={{ size: '30px', color: 'black' }}>
+          <IconContext.Provider value={{ size: '38px', color: '#d2b575' }}>
             <BsCurrencyExchange />
           </IconContext.Provider>
           <div>
