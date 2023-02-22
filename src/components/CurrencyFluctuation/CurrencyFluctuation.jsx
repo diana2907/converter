@@ -23,7 +23,7 @@ export const CurrencyFluctuation = ({ baseDate }) => {
       .then(data => {
         console.log(data);
       });
-  }, []);
+  }, [dateISO, baseDate]);
   return (
     <section className={css.fluctuation}>
       <div className="container">
