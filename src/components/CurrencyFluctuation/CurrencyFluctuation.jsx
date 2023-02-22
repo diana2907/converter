@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Chart } from 'components/Chart/Chart';
 import css from 'components/CurrencyFluctuation/CurrencyFluctuation.module.css';
 
