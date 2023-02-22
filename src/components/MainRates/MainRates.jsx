@@ -14,6 +14,8 @@ export function MainRates() {
     '-' +
     ('0' + D.getDate()).slice(-2);
   const [currencyOptions, setCurrencyOptions] = useState([]);
+  const [fromCurrency, setFromCurrency] = useState();
+  const [toCurrency, setToCurrency] = useState();
 
   useEffect(() => {
     fetch(`${BASE_URL}/symbols`)
@@ -25,7 +27,14 @@ export function MainRates() {
 
   return (
     <>
-      <Converter currencyOptions={currencyOptions} dateISO={dateISO} />
+      <Converter
+        setFromCurrency={setFromCurrency}
+        setToCurrency={setToCurrency}
+        toCurrency={toCurrency}
+        fromCurrency={fromCurrency}
+        currencyOptions={currencyOptions}
+        dateISO={dateISO}
+      />
       <CurrencyFluctuation baseDate={dateISO} />
       <HistoricalRates currencyOptions={currencyOptions} />
     </>

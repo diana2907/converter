@@ -6,10 +6,15 @@ import { RiSwapBoxLine } from 'react-icons/ri';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 
-export function Converter({ currencyOptions, dateISO }) {
+export function Converter({
+  currencyOptions,
+  dateISO,
+  fromCurrency,
+  toCurrency,
+  setFromCurrency,
+  setToCurrency,
+}) {
   const [date, setDate] = useState(dateISO);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
   const [exchangeRate, setExchangeRate] = useState();
   const [amount, setAmount] = useState(1);
   const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
