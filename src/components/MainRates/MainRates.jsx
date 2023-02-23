@@ -35,7 +35,11 @@ export function MainRates() {
         currencyOptions={currencyOptions}
         dateISO={dateISO}
       />
-      <CurrencyFluctuation baseDate={dateISO} />
+      <CurrencyFluctuation
+        baseDate={dateISO}
+        fromCurrency={fromCurrency}
+        toCurrency={toCurrency}
+      />
       <HistoricalRates currencyOptions={currencyOptions} />
     </>
   );
