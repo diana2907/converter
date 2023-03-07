@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -20,7 +20,7 @@ ChartJS.register(
   Legend
 );
 
-export function Chart({ chartData }) {
+export function Chart({ chartData, lables, toCurrency, fromCurrency }) {
   const options = {
     responsive: true,
     plugins: {
@@ -30,21 +30,12 @@ export function Chart({ chartData }) {
     },
   };
 
-  const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-  ];
 
   const data = {
-    labels,
+    labels: lables,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: `The rate ${toCurrency} to 1 ${fromCurrency}`,
         data: chartData,
         borderColor: '#d2b575',
         backgroundColor: '#d2b575',

@@ -17,19 +17,29 @@ export const Footer = () => {
           <ul className={css.list}>
             <IconContext.Provider value={{ size: '22px', color: '#d2b575' }}>
               <li className={css.item}>
-                <SiTelegram />
+                <a href="https://web.telegram.org/k/">
+                  <SiTelegram />
+                </a>
               </li>
               <li className={css.item}>
-                <SiInstagram />
+                <a href="https://www.instagram.com">
+                  <SiInstagram />
+                </a>
               </li>
               <li className={css.item}>
-                <SiViber />
+                <a href="https://www.viber.com/ua/">
+                  <SiViber />
+                </a>
               </li>
               <li className={css.item}>
-                <SiFacebook />
+                <a href="https://uk-ua.facebook.com/">
+                  <SiFacebook />
+                </a>
               </li>
               <li className={css.item}>
-                <SiLinkedin />
+                <a href="https://ua.linkedin.com/">
+                  <SiLinkedin />
+                </a>
               </li>
             </IconContext.Provider>
           </ul>

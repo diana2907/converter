@@ -33,7 +33,6 @@ export function Converter({
       fetch(`${BASE_URL}/convert?from=${fromCurrency}&to=${toCurrency}`)
         .then(res => res.json())
         .then(data => {
-          console.log(data.date);
           setExchangeRate(data.info.rate);
           setDate(data.date);
         });
