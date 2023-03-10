@@ -14,8 +14,8 @@ export function MainRates() {
     '-' +
     ('0' + D.getDate()).slice(-2);
   const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
+  const [fromCurrency, setFromCurrency] = useState('USD');
+  const [toCurrency, setToCurrency] = useState('UAH');
 
   useEffect(() => {
     fetch(`${BASE_URL}/symbols`)

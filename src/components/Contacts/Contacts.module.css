@@ -1,0 +1,25 @@
+.head {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.point {
+  font-size: 20px;
+}
+
+.point:not(:last-child) {
+  margin-bottom: 38px;
+}
+
+.list {
+  display: flex;
+}
+
+.item:not(:last-child) {
+  margin-right: 26px;
+}
+
+.title {
+  margin-bottom: 42px;
+  font-size: 32px;
+}

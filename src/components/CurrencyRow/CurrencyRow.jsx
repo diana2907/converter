@@ -8,7 +8,7 @@ export default function CurrencyRow({
   amount,
 }) {
   return (
-    <div>
+    <div className={css.box}>
       <input
         min="1"
         type="number"
@@ -21,9 +21,6 @@ export default function CurrencyRow({
         value={selectedCurrency}
         onChange={onChangeCurrency}
       >
-        <option disabled selected>
-          Оберіть валюту
-        </option>
         {currencyOptions.map(option => (
           <option key={option} value={option}>
             {option}

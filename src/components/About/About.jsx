@@ -6,7 +6,6 @@ export const About = () => {
     <section className={css.about}>
       <div className="container">
         <h2 className={css.title}>About us</h2>
-        {/* <div className={css.block}> */}
         <div className={css.block}>
           <p>
             Voluptatibus qui labore ipsam laudantium blanditiis provident odio
@@ -52,7 +51,6 @@ export const About = () => {
             eaque quia veritatis. Laboriosam ipsam consequatur est.
           </p>
         </div>
-        {/* </div> */}
       </div>
     </section>
   );
