@@ -1,4 +1,4 @@
-import css from 'components/About/About.module.css';
+import css from 'components/About/About.module.scss';
 import img1 from '../../images/develop.jpg';
 import img2 from '../../images/code.jpg';
 export const About = () => {
@@ -26,10 +26,22 @@ export const About = () => {
             sed necessitatibus?
           </p>
 
-          <img src={img1} alt="img1" width="370" height="294" />
+          <img
+            className={css.img}
+            src={img1}
+            alt="img1"
+            width="370"
+            height="294"
+          />
         </div>
         <div className={css.block}>
-          <img src={img2} alt="img2" width="370" height="294" />
+          <img
+            className={css.img}
+            src={img2}
+            alt="img2"
+            width="370"
+            height="294"
+          />
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis,
             natus sunt facilis voluptates at asperiores dicta veritatis, dolorum

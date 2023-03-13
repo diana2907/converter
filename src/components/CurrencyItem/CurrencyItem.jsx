@@ -1,6 +1,6 @@
-import css from 'components/CurrencyRow/CurrencyRow.module.css';
+import css from 'components/CurrencyItem/CurrencyItem.module.scss';
 
-export default function CurrencyRow({
+export default function CurrencyItem({
   currencyOptions,
   selectedCurrency,
   onChangeCurrency,

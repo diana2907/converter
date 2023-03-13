@@ -1,6 +1,6 @@
 import { BsCurrencyExchange } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
-import css from './Navigation.module.css';
+import css from './Navigation.module.scss';
 import { NavLink } from 'react-router-dom';
 
 export const Navigation = () => {

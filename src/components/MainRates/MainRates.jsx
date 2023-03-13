@@ -15,7 +15,20 @@ export function MainRates() {
     ('0' + D.getDate()).slice(-2);
   const [currencyOptions, setCurrencyOptions] = useState([]);
   const [fromCurrency, setFromCurrency] = useState('USD');
-  const [toCurrency, setToCurrency] = useState('UAH');
+  const [toCurrency, setToCurrency] = useState('EUR');
+  const [date, setDate] = useState(dateISO);
+  const [exchangeRate, setExchangeRate] = useState();
+  const [amount, setAmount] = useState(1);
+  const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
+
+  let toAmount, fromAmount;
+  if (amountInFromCurrency) {
+    fromAmount = amount;
+    toAmount = amount * exchangeRate;
+  } else {
+    toAmount = amount;
+    fromAmount = amount / exchangeRate;
+  }
 
   useEffect(() => {
     fetch(`${BASE_URL}/symbols`)
@@ -25,15 +38,50 @@ export function MainRates() {
       });
   }, []);
 
+  useEffect(() => {
+    if (fromCurrency != null && toCurrency != null) {
+      fetch(
+        `${BASE_URL}/convert?from=${fromCurrency}&to=${toCurrency}&places=4`
+      )
+        .then(res => res.json())
+        .then(data => {
+          setExchangeRate(data.info.rate);
+          setDate(data.date);
+        });
+      if (exchangeRate === null) {
+        alert('Відсутній курс на сьогодні');
+      }
+    }
+  }, [fromCurrency, toCurrency, exchangeRate]);
+
+  function handleFromAmountChange(e) {
+    setAmount(e.target.value);
+    setAmountInFromCurrency(true);
+  }
+
+  function handleToAmountChange(e) {
+    setAmount(e.target.value);
+    setAmountInFromCurrency(false);
+  }
+
+  function changeCurrency() {
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+  }
   return (
     <>
       <Converter
-        setFromCurrency={setFromCurrency}
-        setToCurrency={setToCurrency}
         toCurrency={toCurrency}
         fromCurrency={fromCurrency}
         currencyOptions={currencyOptions}
-        dateISO={dateISO}
+        dateISO={date}
+        handleFromAmountChange={handleFromAmountChange}
+        handleToAmountChange={handleToAmountChange}
+        changeCurrency={changeCurrency}
+        setFromCurrency={setFromCurrency}
+        setToCurrency={setToCurrency}
+        toAmount={toAmount}
+        fromAmount={fromAmount}
       />
       <CurrencyFluctuation
         baseDate={dateISO}

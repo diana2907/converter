@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { Chart } from 'components/Chart/Chart';
-import css from 'components/CurrencyFluctuation/CurrencyFluctuation.module.css';
+import css from 'components/CurrencyFluctuation/CurrencyFluctuation.module.scss';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 

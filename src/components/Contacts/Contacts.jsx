@@ -5,7 +5,7 @@ import {
   SiFacebook,
   SiLinkedin,
 } from 'react-icons/si';
-import css from 'components/Contacts/Contacts.module.css';
+import css from 'components/Contacts/Contacts.module.scss';
 import { IconContext } from 'react-icons';
 
 export const Contacts = () => {

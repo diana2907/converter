@@ -12,7 +12,9 @@
 }
 
 .img {
-  width: 300px;
+  max-width: 370px;
+  max-height: 330px;
+  object-fit: cover;
 }
 
 .title {

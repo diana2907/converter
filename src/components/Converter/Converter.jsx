@@ -1,68 +1,30 @@
-import CurrencyRow from 'components/CurrencyRow/CurrencyRow';
-import css from 'components/Converter/Converter.module.css';
-import { useEffect, useState } from 'react';
+import CurrencyItem from 'components/CurrencyItem/CurrencyItem';
+import css from 'components/Converter/Converter.module.scss';
 import { IconContext } from 'react-icons';
 import { RiSwapBoxLine } from 'react-icons/ri';
-
-const BASE_URL = 'https://api.exchangerate.host/';
 
 export function Converter({
   currencyOptions,
   dateISO,
   fromCurrency,
   toCurrency,
+  handleFromAmountChange,
+  handleToAmountChange,
+  changeCurrency,
   setFromCurrency,
   setToCurrency,
+  toAmount,
+  fromAmount,
 }) {
-  const [date, setDate] = useState(dateISO);
-  const [exchangeRate, setExchangeRate] = useState();
-  const [amount, setAmount] = useState(1);
-  const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
-
-  let toAmount, fromAmount;
-  if (amountInFromCurrency) {
-    fromAmount = amount;
-    toAmount = amount * exchangeRate;
-  } else {
-    toAmount = amount;
-    fromAmount = amount / exchangeRate;
-  }
-
-  useEffect(() => {
-    if (fromCurrency != null && toCurrency != null) {
-      fetch(`${BASE_URL}/convert?from=${fromCurrency}&to=${toCurrency}`)
-        .then(res => res.json())
-        .then(data => {
-          setExchangeRate(data.info.rate);
-          setDate(data.date);
-        });
-    }
-  }, [fromCurrency, toCurrency, exchangeRate]);
-
-  function handleFromAmountChange(e) {
-    setAmount(e.target.value);
-    setAmountInFromCurrency(true);
-  }
-
-  function handleToAmountChange(e) {
-    setAmount(e.target.value);
-    setAmountInFromCurrency(false);
-  }
-
-  function changeCurrency() {
-    setFromCurrency(toCurrency);
-    setToCurrency(fromCurrency);
-  }
-
   return (
     <section className={css.converter}>
       <div className="container">
         <div>
           <h1 className={css.title}>Сurrency rates</h1>
-          <p>on the date : {date}</p>
+          <p>on the date : {dateISO}</p>
         </div>
         <div className={css.box}>
-          <CurrencyRow
+          <CurrencyItem
             currencyOptions={currencyOptions}
             selectedCurrency={fromCurrency}
             onChangeCurrency={e => setFromCurrency(e.target.value)}
@@ -76,7 +38,7 @@ export function Converter({
             </IconContext.Provider>
           </button>
 
-          <CurrencyRow
+          <CurrencyItem
             currencyOptions={currencyOptions}
             selectedCurrency={toCurrency}
             onChangeCurrency={e => setToCurrency(e.target.value)}

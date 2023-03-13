@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import css from 'components/HistoricalRates/HistoricalRates.module.css';
+import css from 'components/HistoricalRates/HistoricalRates.module.scss';
 
 const BASE_URL = 'https://api.exchangerate.host/';
 
